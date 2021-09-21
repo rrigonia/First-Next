@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { nanoid } from 'nanoid';
 
-const PokeCard = ({ name, moves, stats, types, sprites }) => {
+const PokeCard = React.memo(({ name, moves, stats, types, sprites }) => {
 	return (
 		<div className='mx-2 py-4 group my-2 border-b-2 border-gray-400 rounded-lg hover:bg-red-400 hover:translate-y-px transition-colors '>
 			<div className='w-full  flex flex-flex items-around flex-wrap justify-around'>
@@ -15,7 +16,10 @@ const PokeCard = ({ name, moves, stats, types, sprites }) => {
 					<h5 className=' uppercase text-xl font-semibold'>
 						{name}{' '}
 						{types.map((t, idx) => (
-							<span className='text-sm font-normal italic lowercase'>
+							<span
+								key={nanoid()}
+								className='text-sm font-normal italic lowercase'
+							>
 								{t.type.name}
 								{idx < types.length - 1 && ', '}
 							</span>
@@ -26,14 +30,17 @@ const PokeCard = ({ name, moves, stats, types, sprites }) => {
 							Moves :
 						</span>{' '}
 						{moves.slice(0, 3).map((m, idx) => (
-							<span className='uppercase font-normal text-lg mx-1'>
+							<span
+								key={nanoid()}
+								className='uppercase font-normal text-lg mx-1'
+							>
 								{m.move.name} {idx < 2 && ','}
 							</span>
 						))}
 						<p className='text-lg text-gray-300 font-semibold'>
 							Stats :{' '}
 							{stats.slice(0, 3).map(s => (
-								<span className='font-normal text-lg mx-1'>
+								<span key={nanoid()} className='font-normal text-lg mx-1'>
 									{s.stat.name} ({s.base_stat})
 								</span>
 							))}
@@ -43,6 +50,6 @@ const PokeCard = ({ name, moves, stats, types, sprites }) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export { PokeCard };

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import * as styles from '../styles';
+
 import { Nav } from '../components/nav';
 import { PokeCard } from '../components/pokemon-lib';
 import * as React from 'react';
@@ -10,6 +10,9 @@ export default function Home({ newPokemons, json }) {
 	const [ changedPokemons, setChangedPokemons ] = React.useState(null);
 	const pokemons = changedPokemons || newPokemons;
 
+	const headerContainer =
+		'text-gray-100 px-10 flex items-center justify-between static text-lg font-semibold uppercase bg-red-400 w-full h-20';
+
 	return (
 		<div>
 			<Head>
@@ -17,7 +20,7 @@ export default function Home({ newPokemons, json }) {
 			</Head>
 			<main className='bg-gray-200 h-screen'>
 				<header className=''>
-					<div className={styles.headerContainer}>
+					<div className={headerContainer}>
 						<h5 className='ml-4'>PokeApi</h5>
 					</div>
 				</header>
